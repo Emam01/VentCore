@@ -11,7 +11,7 @@ PA9 (previously an auxiliary cooling fan) is no longer used by this config — t
 
 |File|What it is|
 |-|-|
-|`chamber\_exhaust\_fan.cfg`|New file — all fan hardware and logic lives here (renamed from `chamber\_and\_cooling\_fans.cfg` now that it's chamber-exhaust-only)|
+|`ventcode.cfg`|New file — all fan hardware and logic lives here|
 |`Klipper\_code.txt`|Your `printer.cfg`, with the stock `\[purifier]` block disabled and one new `\[include]` line added|
 |`start\_code.txt`|OrcaSlicer **Machine start g-code**, with 1 line added after `PRINT\_START`|
 |`end\_code.txt`|OrcaSlicer **Machine end g-code** — unchanged from what you originally uploaded|
