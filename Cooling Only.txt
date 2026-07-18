@@ -1,0 +1,32 @@
+
+[heater_fan filter_fan] - #Option 1, automatic control with extruders, #comment this out for Option 2. 
+pin: !PA8 
+tachometer_pin: PA9 
+tachometer_poll_interval: 0.0005 
+fan_speed: 1.0 
+heater: extruder, extruder1, extruder2, extruder3 
+max_power: 1.0 
+cycle_time: 0.001 
+hardware_pwm: True 
+heater_temp: 50.0 #fan automatically starts filtering at this temperature 
+enable_pin: PE15 
+shutdown_speed: 0
+
+[fan_generic filter_fan] - #Option 2, hybrid control with extruders, #comment this out for Option 1. 
+pin: !PA8 
+tachometer_pin: PA9 
+tachometer_poll_interval: 0.0005 
+max_power: 1.0 
+cycle_time: 0.001 
+hardware_pwm: True
+enable_pin: PE15 
+shutdown_speed: 0
+
+[delayed_gcode auto_filter_fan]
+initial_duration: 1
+gcode:
+    {% if printer.extruder.temperature > 50 %}
+        SET_FAN_SPEED FAN=filter_fan SPEED=1.0
+    {% else %}
+        SET_FAN_SPEED FAN=filter_fan SPEED=0
+    {% endif %}
